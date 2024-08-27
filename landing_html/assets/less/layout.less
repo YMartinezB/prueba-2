@@ -1,0 +1,29 @@
+//
+// Avalon
+// (c) The Red Team
+//
+// The Theme Layout
+// --------------------------------------------------
+
+/* Some Base Fixes */
+
+:focus {outline:none;}
+::-moz-focus-inner {border:none;}
+
+/* Basic Layouts */
+
+html 					{position: relative;min-height: 100px;}
+html, body 				{height: 100%;}
+
+
+//Footer at bottom
+.static-content-wrapper {position: relative;}
+.static-content {margin-bottom: @footer-height;}
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: @footer-height;
+
+	h6 {font-weight: 400; font-size: @font-size-mini; text-transform: uppercase; letter-spacing: 0.1em;}
+}

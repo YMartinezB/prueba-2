@@ -1,0 +1,127 @@
+.alternate-background {
+	background-color: #fafbfc;
+}
+
+.promo-box {
+	background-color: #fafbfc;
+	padding: 30px;
+	font-size: @font-size-large;
+	border: 1px solid @border-lighter;
+	border-radius: @border-radius-large;
+
+	button {top: 50%}
+
+	p {
+		margin: 0;
+	}
+	
+	.promo-msg {
+		h1, h2, h3, h4, h5, h6 {margin: 0;}
+	}
+
+}
+
+.content-box {
+	h3 {
+		//text-transform: uppercase;
+		//font-size: 20px;
+		//letter-spacing: 0.1em;
+		i {margin-right: 5px;}
+
+		.tabular-cell.icon {width: 64px; vertical-align: top;}
+	}
+
+	&.content-box-simple {
+		text-transform: none;
+		letter-spacing: normal;
+	}
+
+	&.content-column 	{
+		.clearfix();
+
+		.icon-left 			{width: 45px; float: left;}
+		.content-right 		{margin-left: 45px;}
+
+		.icon-right 		{width: 45px; float: right;}
+		.content-left 		{margin-right: 45px;}
+	}
+}
+
+.box-padded 	{padding: 20px;}
+.box-centered 	{text-align: center;}
+
+.box-halftop {
+	background: #fafbfc;
+	margin-top: -50px;
+	padding-top: 50px;
+}
+
+.box-halftop, .content-box {border-radius: 2px;}
+
+.icon-rounded {border-radius: @border-radius-large;}
+.icon-circle  {border-radius: 50%;}
+
+
+.icon-highlight {
+	padding: 15px;
+	margin-bottom: 20px;
+
+	
+}
+
+.icon-focused {
+	padding: 15px;
+	border-width: 1px;
+	border-style: solid;
+}
+
+// Remove if using any other icon size except fa-2x
+
+.icon-highlight, .icon-focused {
+	height: 60px; width: 60px;
+	text-align: center;
+}
+
+h3 .icon-focused {height: 52px;width: 52px;}
+
+
+// Colors and Mixins
+
+.box-mixin(@background-color, @text-color) {
+	background: @background-color;
+	color: rgba(red(@text-color), green(@text-color), blue(@text-color), 0.7);
+
+	h3 {color: @text-color;}
+	i {color: @text-color;}
+}
+
+.icon-mixin(@background-color, @text-color) {
+	background: @background-color;
+	color: @text-color !important;
+
+	&.icon-focused, &.icon-highlight {border-color: @background-color}
+}
+
+.icon-mixin-inverse(@background-color, @text-color) {
+	background: @background-color;
+	color: @text-color !important;
+	&.icon-focused, &.icon-highlight {border-color: @text-color}
+}
+
+
+.icon-default 			{.icon-mixin(#333333, #fff);} 
+.icon-primary 			{.icon-mixin(@brand-primary, #fff);}
+.icon-success 			{.icon-mixin(@brand-success, #fff);}
+.icon-inverse 			{.icon-mixin(@brand-inverse, #fff);}
+
+.icon-default-inverse 	{.icon-mixin-inverse(#fff, #333333);} 
+.icon-primary-inverse 	{.icon-mixin-inverse(#fff, @brand-primary);}
+.icon-success-inverse 	{.icon-mixin-inverse(#fff, @brand-success, );}
+.icon-inverse-inverse 	{.icon-mixin-inverse(#fff, @brand-inverse, );}
+
+
+.box-default 			{.box-mixin(#fafbfc, #333333);}
+.box-primary 			{.box-mixin(@brand-primary, #fff);}
+.box-success 			{.box-mixin(@brand-success, #fff);}
+.box-inverse 			{.box-mixin(@brand-inverse, #fff);}
+.box-dark    			{.box-mixin(#333, #fff);}

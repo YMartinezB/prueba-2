@@ -1,0 +1,537 @@
+//
+// Avalon
+// (c) The Red Team
+//
+// The Theme Layout
+// --------------------------------------------------
+
+/* Some Base Fixes */
+
+:focus {outline:none;}
+::-moz-focus-inner {border:none;}
+
+/* Basic Layouts */
+
+html 					{position: relative;min-height: 100px;}
+html, body 				{height: 100%;}
+
+//Add top margin to any page with fixed header
+.navbar-fixed-top  {
+ 	+ #wrapper, + #layout-fixed {padding-top: 50px !important;}
+ }
+
+
+
+.navbar-fixed-top {width: 100%; position:fixed !important}
+
+#wrapper 				{display:table;width: 100%; table-layout: fixed; overflow: hidden;}
+#layout-static 			{display: table-row; height: 100%;}
+.static-sidebar-wrapper {display: table-cell; overflow: hidden;} 
+.static-sidebar-wrapper, .static-sidebar {width: @sidebar-static-width;}
+.static-content-wrapper {display: table-cell;}
+.static-sidebar-wrapper, .static-content-wrapper {vertical-align: top;}
+footer					{background: @border-darker; padding: 5px 20px; ul {margin: 0;}}
+
+
+#layout-fixed 			{height: 100%;}
+
+
+// Sticky Footer
+.fixed-content, .horizontal-nav #wrapper {
+	min-height: 100%;
+	margin-bottom: -@footer-height;
+	&:after {
+		content: "";
+		display: block;
+	}
+	+ footer, &:after {
+		height: @footer-height;
+	}
+	+ footer {
+		position: relative;
+	}
+}
+#wrapper {position: relative;}
+
+
+//Footer at bottom
+.static-content-wrapper {position: relative;}
+.static-content {margin-bottom: @footer-height;}
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: @footer-height;
+
+	h6 {font-weight: 400; font-size: @font-size-mini; text-transform: uppercase; letter-spacing: 0.1em;}
+}
+
+
+
+
+
+//Scroll sidebar
+
+.sidebar-scroll {position: relative;}
+
+.sidebar-scroll .static-sidebar {position: fixed !important}
+
+body.sidebar-hideon-collpase {
+	&.sidebar-collapsed .static-sidebar-wrapper {
+		display: none;
+	}
+	.static-sidebar-wrapper{
+		display: table-cell;
+	}
+}
+
+/* Infobar */
+
+.infobar-wrapper {
+	position: fixed;
+	z-index: @zindex-navbar-fixed - 1;
+	overflow: hidden;
+	top: 0px;
+	right: 0;
+	bottom: 0;
+	height: 100%;
+	width: 260px;
+}
+
+body.infobar-offcanvas, body.infobar-overlay {
+	.infobar-wrapper {
+		border-left: 1px solid @border-darker;
+		right: -260px;
+		.transition(~"right 0.3s ease-in, left 0.3s ease-in");
+	}
+	&.infobar-active .infobar-wrapper {
+		right: 0;
+	}
+	//&.infobar-active .FixedHeader_Cloned {
+	//	left: 1px !important;
+	//}
+}
+
+body.infobar-overlay {
+	.infobar-wrapper {
+		top: 50px;
+	}
+}
+
+body.infobar-offcanvas {
+	//padding-top: 0;
+	.infobar-wrapper {
+		z-index: @zindex-navbar-fixed;
+	}
+
+	#wrapper, nav.navbar, header.navbar {
+		.transition(~"left 0.3s ease-in, right 0.3s ease-in");
+		position: relative;
+		left: 0;
+	}
+
+	&.infobar-active {
+		#wrapper, nav.navbar, header.navbar {left: -260px !important;}
+
+		#wrapper { // for body.horizontal-nav
+			header.navbar, nav.navbar {left: 0 !important;}
+		}
+	}
+}
+
+
+
+/* Boxed Layout */
+
+body.layout-boxed {
+	background: @boxed-background;
+	header, #wrapper {width: @boxed-width; margin: 0 auto;}
+
+	#wrapper {background: @body-bg;}
+
+	.infobar-wrapper {
+		display: none;
+		.transition(~"none");
+	}
+}
+
+
+
+
+
+/*Horizontal Navigation*/
+
+
+.horizontal-nav {
+	#page-content {margin-left: 0; }
+
+	nav.navbar {
+		width: 100%;
+		z-index: @zindex-navbar - 1;
+	}
+
+	header.navbar {
+		z-index: @zindex-navbar ;
+	}
+
+	header.navbar-fixed-top + nav.navbar {
+		z-index: @zindex-navbar-fixed - 1; //supporting multiple navbar
+		margin-top: 50px;
+	}
+
+
+
+	//.navbar-fixed-top + nav {margin-top: 50px;}
+	//.navbar-fixed-top + nav + .static-content {margin-top: 100px;}
+
+	#leftmenu-trigger {display: none;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: @screen-sm) {
+	// Large Icon Nav
+	#horizontal-navbar.large-icons-nav .navbar-nav {
+		margin-bottom: 0;
+		li {
+			min-width: 100px;
+			a>i {
+				font-size: 24px;
+				display: block;
+				text-align: center;
+				margin-top: 4px;
+				margin-right: 0;
+			}
+			span {
+				display: block;
+				text-align: center;
+				margin-top: 10px;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				font-size: @font-size-mini;
+				line-height: @font-size-mini;
+			}
+		}
+	}
+}
+
+
+
+
+/* Compact */
+
+.compact {
+	.sidebar nav.widget-body>ul.acc-menu>li>a {padding: 10px 20px;}
+	#sidebar .badge {top:10px;}
+
+	// .panel .panel-heading {
+	// 	padding: 0 10px 0 10px;
+	// 	line-height: 38px;
+	// 	.nav-tabs li a {line-height: 36px;}
+	// 	.panel-ctrls .button-icon {height: 38px; padding: 12px 0;}
+	// 	i.separator {height: 38px;}
+	// 	h2 {line-height: 38px;}
+	// }
+}
+
+
+
+
+
+
+
+.page-content {padding: 0 10px;}
+
+
+/* Page Tabs */
+.page-tabs {
+	margin: 0 -10px;
+	background: @page-title-color;
+	padding: 0 10px;
+	.clearfix();
+
+	+ .container {margin: 20px 0;}
+	
+	.nav.nav-tabs {
+		> li a {color: @gray; text-transform: uppercase; letter-spacing: 0.1em;}
+		> li.active a {color: @gray-darker; font-weight: 400; text-transform: uppercase; letter-spacing: 0.1em;}
+		> li:hover a {}
+	}
+}
+
+
+/* Page Heading */
+.page-heading {background: @page-title-color; padding: 20px; .clearfix(); margin: 0 -10px;}
+.page-heading h1 {float: left; margin: 0; line-height: 34px; font-weight: 300; font-size: 22px;}
+.page-heading h1 small {font-size: 14px;}
+.page-heading .options {float: right;}
+
+
+/* Breadcrumb Mod */
+.page-content>.breadcrumb {
+	border: 1px solid @border-darker;
+	margin: 20px 10px;
+	padding: 4px 12px;
+}
+
+/* Logo */
+.navbar-brand {.text-hide() !important; background: url("") no-repeat left center;height: @navbar-height;width: @navbar-brand-width;}
+
+
+
+
+/* Tabular */
+.tabular {
+	display: table; 
+	width: 100%;
+	.tabular-row {
+		display: table-row;
+		.tabular-cell {display: table-cell;vertical-align: middle;}
+	}
+}
+
+
+
+@media print {
+	.static-sidebar-wrapper, .infobar-wrapper, .demo-options, .page-heading, .page-content > .breadcrumb, footer {
+		display: none;
+	}
+}
+
+
+
+// Breadcrumbs on Top
+
+.breadcrumb-top .page-content {
+	> .breadcrumb {margin: 0 -10px; padding: 4px 20px; border-radius: 0;}
+	> .page-heading {background: none; margin-bottom: 20px;}
+	> .page-heading-white {background: #fff;}
+}
+
+.breadcrumb-top .page-tabs {
+	background: #fff !important;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Topnav Megamenu */
+
+// -- Top Mega Menu that folds in small screens with a fluid break point.  --//
+// As soon as the menu goes into two lines, js adds a class to the body and the menu
+// rearranges itself to collapse
+
+body.topnav-collapsed {
+	header.navbar {
+		.navbar-brand {width: auto;}
+
+		.navbar-collapse {
+			width: auto;
+
+			padding-left: 0;
+			padding-right: 0;
+			width: 100%;
+			clear: both;
+
+			border-top-width: 1px;
+			border-top-style: solid;
+			box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+
+			&.collapse {
+				display: none !important;
+				&.in {
+					display: block !important;
+				}
+			}
+
+			&.in {
+				overflow-y: auto !important;
+				overflow-x: hidden;
+			}
+
+		    // Undo the collapse side padding for navbars with containers to ensure
+		    // alignment of right-aligned contents.
+		    .navbar-fixed-top &,
+		    .navbar-static-top &,
+		    .navbar-fixed-bottom & {
+		    	padding-left: 0;
+		    	padding-right: 0;
+		    }
+
+
+			// Dropdown
+			.navbar-nav {margin: 0;}
+		    .navbar-nav, .navbar-nav > li {float: none !important;}
+
+		    .open .dropdown-menu {
+				position: static;
+				float: none;
+				width: auto !important;
+				margin-top: 0;
+				//background-color: transparent;
+				border: 0;
+				box-shadow: none;
+				
+				> li > a,
+				.dropdown-header {
+					padding: 5px 15px 5px 25px;
+				}
+				> li > a {
+					line-height: @line-height-computed;
+					&:hover,
+					&:focus {
+						background-image: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+
+// Coming Soon and Error Pages
+
+html.full-page-image, html.full-page-image body {
+	height: 99%;
+}
+
+body.coming-soon {
+    .overlay-on-image("../img/stockphoto/j.jpg", rgba(0,0,0,0.7));
+
+    .btn.btn-social {
+    	padding: 6px 7px;
+    }
+
+	.coming-soon-wrapper {
+
+		@media (min-width: @screen-sm) {
+			position: relative;
+			top:50%;
+			margin-top: -250px;
+		}
+		
+			.countdown {
+				.time-block {
+					.rgba(white,0.3);
+					padding: 20px 0;
+					margin-bottom: 20px;
+					border-radius: @border-radius-base;
+
+					.digit, .digit-desc {
+						display: block;
+						line-height: 1;
+					}
+
+					.digit {
+						font-size: 35px;
+						font-weight: 300;
+						color: #fff;
+					}
+					.digit-desc {
+						padding-top: 5px;
+						font-size: @font-size-mini;
+						text-transform: uppercase;
+						letter-spacing: 0.1em;
+						color: #fff;
+					}
+				}
+			}
+		
+
+		h1, p {
+			color: #fff;
+		}
+
+		.container {
+			text-align: center;
+			max-width: 500px;
+		}
+	}
+}
+
+body.error {
+	.overlay-on-image("../img/stockphoto/i.jpg", rgba(0,0,0,0.7));
+
+	.error-wrapper {
+		@media (min-width: @screen-sm) {
+			position: relative;
+			top:50%;
+			margin-top: -200px;
+		}
+
+		.container {
+			max-width: 450px;
+			text-align: center;
+		}
+
+		h1, p {
+			color: #fff;
+		}
+		a {
+			color: #eee;
+		}
+
+		h1 {
+			font-size: 96px;
+			margin-bottom: 0;
+		}
+	}
+}
+
+
+
+//Registration, Sign up, etc. forms that require one page
+.focused-form {
+	#registration-form, #login-form {
+		position: relative;
+		top: 50%;
+	}
+	#registration-form {
+		margin-top: -300px;
+	}
+	#login-form {
+		margin-top: -100px;
+	}
+}
